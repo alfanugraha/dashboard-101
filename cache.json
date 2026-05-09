@@ -1,0 +1,327 @@
+{
+    "Jakarta, Indonesia": {
+        "data": {
+            "request": {
+                "type": "City",
+                "query": "Jakarta, Indonesia",
+                "language": "en",
+                "unit": "m"
+            },
+            "location": {
+                "name": "Jakarta",
+                "country": "Indonesia",
+                "region": "Jakarta Raya",
+                "lat": "-6.215",
+                "lon": "106.845",
+                "timezone_id": "Asia/Jakarta",
+                "localtime": "2026-05-09 12:00",
+                "localtime_epoch": 1778328000,
+                "utc_offset": "7.0"
+            },
+            "current": {
+                "observation_time": "05:00 AM",
+                "temperature": 32,
+                "weather_code": 143,
+                "weather_icons": [
+                    "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0006_mist.png"
+                ],
+                "weather_descriptions": [
+                    "Haze"
+                ],
+                "astro": {
+                    "sunrise": "05:54 AM",
+                    "sunset": "05:45 PM",
+                    "moonrise": "11:55 PM",
+                    "moonset": "11:49 AM",
+                    "moon_phase": "Last Quarter",
+                    "moon_illumination": 59
+                },
+                "air_quality": {
+                    "co": "1755.85",
+                    "no2": "71.25",
+                    "o3": "48",
+                    "so2": "59.45",
+                    "pm2_5": "96.55",
+                    "pm10": "96.55",
+                    "us-epa-index": "4",
+                    "gb-defra-index": "4"
+                },
+                "wind_speed": 8,
+                "wind_degree": 14,
+                "wind_dir": "NNE",
+                "pressure": 1008,
+                "precip": 0.6,
+                "humidity": 67,
+                "cloudcover": 25,
+                "feelslike": 39,
+                "uv_index": 8,
+                "visibility": 5,
+                "is_day": "yes"
+            }
+        },
+        "fetched_at": "2026-05-09T12:00:34",
+        "expires_at": "2026-05-09T13:00:34",
+        "ttl_minutes": 60,
+        "ttl_reason": "poor air quality"
+    },
+    "Jakarta, Malaysia": {
+        "data": {
+            "request": {
+                "type": "City",
+                "query": "Jakarta, Indonesia",
+                "language": "en",
+                "unit": "m"
+            },
+            "location": {
+                "name": "Jakarta",
+                "country": "Indonesia",
+                "region": "Jakarta Raya",
+                "lat": "-6.215",
+                "lon": "106.845",
+                "timezone_id": "Asia/Jakarta",
+                "localtime": "2026-04-30 19:57",
+                "localtime_epoch": 1777579020,
+                "utc_offset": "7.0"
+            },
+            "current": {
+                "observation_time": "12:57 PM",
+                "temperature": 25,
+                "weather_code": 296,
+                "weather_icons": [
+                    "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0033_cloudy_with_light_rain_night.png"
+                ],
+                "weather_descriptions": [
+                    "Light Rain"
+                ],
+                "astro": {
+                    "sunrise": "05:53 AM",
+                    "sunset": "05:47 PM",
+                    "moonrise": "04:41 PM",
+                    "moonset": "04:30 AM",
+                    "moon_phase": "Waxing Gibbous",
+                    "moon_illumination": 97
+                },
+                "air_quality": {
+                    "co": "974.85",
+                    "no2": "15.75",
+                    "o3": "160",
+                    "so2": "29.95",
+                    "pm2_5": "28.05",
+                    "pm10": "28.25",
+                    "us-epa-index": "2",
+                    "gb-defra-index": "2"
+                },
+                "wind_speed": 12,
+                "wind_degree": 46,
+                "wind_dir": "NE",
+                "pressure": 1011,
+                "precip": 3,
+                "humidity": 94,
+                "cloudcover": 50,
+                "feelslike": 27,
+                "uv_index": 0,
+                "visibility": 4,
+                "is_day": "no"
+            }
+        },
+        "fetched_at": "2026-04-30T19:57:36",
+        "expires_at": "2026-04-30T22:57:36",
+        "ttl_minutes": 180,
+        "ttl_reason": "night time (stable)"
+    },
+    "Kuala Lumpur, Malaysia": {
+        "data": {
+            "request": {
+                "type": "City",
+                "query": "Kuala Lumpur, Malaysia",
+                "language": "en",
+                "unit": "m"
+            },
+            "location": {
+                "name": "Kuala Lumpur",
+                "country": "Malaysia",
+                "region": "Kuala Lumpur",
+                "lat": "3.167",
+                "lon": "101.700",
+                "timezone_id": "Asia/Kuala_Lumpur",
+                "localtime": "2026-04-30 20:57",
+                "localtime_epoch": 1777582620,
+                "utc_offset": "8.0"
+            },
+            "current": {
+                "observation_time": "12:57 PM",
+                "temperature": 29,
+                "weather_code": 176,
+                "weather_icons": [
+                    "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0025_light_rain_showers_night.png"
+                ],
+                "weather_descriptions": [
+                    "Patchy rain nearby"
+                ],
+                "astro": {
+                    "sunrise": "07:04 AM",
+                    "sunset": "07:17 PM",
+                    "moonrise": "06:12 PM",
+                    "moonset": "05:44 AM",
+                    "moon_phase": "Waxing Gibbous",
+                    "moon_illumination": 97
+                },
+                "air_quality": {
+                    "co": "719.85",
+                    "no2": "15.75",
+                    "o3": "147",
+                    "so2": "13.25",
+                    "pm2_5": "21.65",
+                    "pm10": "23.55",
+                    "us-epa-index": "2",
+                    "gb-defra-index": "2"
+                },
+                "wind_speed": 4,
+                "wind_degree": 299,
+                "wind_dir": "WNW",
+                "pressure": 1008,
+                "precip": 1.2,
+                "humidity": 75,
+                "cloudcover": 25,
+                "feelslike": 37,
+                "uv_index": 0,
+                "visibility": 10,
+                "is_day": "no"
+            }
+        },
+        "fetched_at": "2026-04-30T19:57:37",
+        "expires_at": "2026-04-30T22:57:37",
+        "ttl_minutes": 180,
+        "ttl_reason": "night time (stable)"
+    },
+    "Jakarta, Brunei": {
+        "data": {
+            "request": {
+                "type": "City",
+                "query": "Brunei, Brunei Darussalam",
+                "language": "en",
+                "unit": "m"
+            },
+            "location": {
+                "name": "Brunei",
+                "country": "Brunei Darussalam",
+                "region": "",
+                "lat": "4.883",
+                "lon": "114.933",
+                "timezone_id": "Asia/Brunei",
+                "localtime": "2026-04-30 22:05",
+                "localtime_epoch": 1777586700,
+                "utc_offset": "8.0"
+            },
+            "current": {
+                "observation_time": "02:05 PM",
+                "temperature": 28,
+                "weather_code": 116,
+                "weather_icons": [
+                    "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0004_black_low_cloud.png"
+                ],
+                "weather_descriptions": [
+                    "Partly cloudy"
+                ],
+                "astro": {
+                    "sunrise": "06:09 AM",
+                    "sunset": "06:26 PM",
+                    "moonrise": "05:19 PM",
+                    "moonset": "04:48 AM",
+                    "moon_phase": "Waxing Gibbous",
+                    "moon_illumination": 97
+                },
+                "air_quality": {
+                    "co": "307.85",
+                    "no2": "1.85",
+                    "o3": "89",
+                    "so2": "2.55",
+                    "pm2_5": "8.85",
+                    "pm10": "10.35",
+                    "us-epa-index": "1",
+                    "gb-defra-index": "1"
+                },
+                "wind_speed": 4,
+                "wind_degree": 10,
+                "wind_dir": "N",
+                "pressure": 1010,
+                "precip": 0,
+                "humidity": 84,
+                "cloudcover": 75,
+                "feelslike": 35,
+                "uv_index": 0,
+                "visibility": 10,
+                "is_day": "no"
+            }
+        },
+        "fetched_at": "2026-04-30T21:05:30",
+        "expires_at": "2026-05-01T00:05:30",
+        "ttl_minutes": 180,
+        "ttl_reason": "night time (stable)"
+    },
+    "Bandar Seri Begawan, Brunei": {
+        "data": {
+            "request": {
+                "type": "City",
+                "query": "Bandar Seri Begawan, Brunei Darussalam",
+                "language": "en",
+                "unit": "m"
+            },
+            "location": {
+                "name": "Bandar Seri Begawan",
+                "country": "Brunei Darussalam",
+                "region": "",
+                "lat": "4.883",
+                "lon": "114.933",
+                "timezone_id": "Asia/Brunei",
+                "localtime": "2026-04-30 22:05",
+                "localtime_epoch": 1777586700,
+                "utc_offset": "8.0"
+            },
+            "current": {
+                "observation_time": "02:05 PM",
+                "temperature": 28,
+                "weather_code": 116,
+                "weather_icons": [
+                    "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0004_black_low_cloud.png"
+                ],
+                "weather_descriptions": [
+                    "Partly cloudy"
+                ],
+                "astro": {
+                    "sunrise": "06:09 AM",
+                    "sunset": "06:26 PM",
+                    "moonrise": "05:19 PM",
+                    "moonset": "04:48 AM",
+                    "moon_phase": "Waxing Gibbous",
+                    "moon_illumination": 97
+                },
+                "air_quality": {
+                    "co": "307.85",
+                    "no2": "1.85",
+                    "o3": "89",
+                    "so2": "2.55",
+                    "pm2_5": "8.85",
+                    "pm10": "10.35",
+                    "us-epa-index": "1",
+                    "gb-defra-index": "1"
+                },
+                "wind_speed": 4,
+                "wind_degree": 10,
+                "wind_dir": "N",
+                "pressure": 1010,
+                "precip": 0,
+                "humidity": 84,
+                "cloudcover": 75,
+                "feelslike": 34,
+                "uv_index": 0,
+                "visibility": 10,
+                "is_day": "no"
+            }
+        },
+        "fetched_at": "2026-04-30T21:05:31",
+        "expires_at": "2026-05-01T00:05:31",
+        "ttl_minutes": 180,
+        "ttl_reason": "night time (stable)"
+    }
+}

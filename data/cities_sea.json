@@ -1,0 +1,48 @@
+{
+  "countries": {
+    "Indonesia": {
+      "flag": "🇮🇩",
+      "cities": ["Jakarta", "Surabaya", "Medan", "Bali", "Makassar", "Yogyakarta", "Bandung"]
+    },
+    "Malaysia": {
+      "flag": "🇲🇾",
+      "cities": ["Kuala Lumpur", "Penang", "Kota Kinabalu", "Johor Bahru", "Kuching"]
+    },
+    "Singapore": {
+      "flag": "🇸🇬",
+      "cities": ["Singapore"]
+    },
+    "Thailand": {
+      "flag": "🇹🇭",
+      "cities": ["Bangkok", "Chiang Mai", "Phuket", "Pattaya", "Hat Yai"]
+    },
+    "Vietnam": {
+      "flag": "🇻🇳",
+      "cities": ["Hanoi", "Ho Chi Minh City", "Da Nang", "Hue"]
+    },
+    "Philippines": {
+      "flag": "🇵🇭",
+      "cities": ["Manila", "Cebu", "Davao", "Quezon City"]
+    },
+    "Myanmar": {
+      "flag": "🇲🇲",
+      "cities": ["Yangon", "Mandalay", "Naypyidaw"]
+    },
+    "Cambodia": {
+      "flag": "🇰🇭",
+      "cities": ["Phnom Penh", "Siem Reap"]
+    },
+    "Laos": {
+      "flag": "🇱🇦",
+      "cities": ["Vientiane", "Luang Prabang"]
+    },
+    "Brunei": {
+      "flag": "🇧🇳",
+      "cities": ["Bandar Seri Begawan"]
+    },
+    "Timor-Leste": {
+      "flag": "🇹🇱",
+      "cities": ["Dili"]
+    }
+  }
+}
