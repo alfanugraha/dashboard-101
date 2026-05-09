@@ -1,0 +1,990 @@
+---
+title: "`dashboard-101`:<br/>Prinsip dan Praktik Terbaik Pengembangan Dashboard di Dunia Industri"
+block-headings: TRUE
+# subtitle: "Prinsip dan Praktik Terbaik Pengembangan di Dunia Industri"
+author: "Alfa Nugraha Pradana, S.Komp, M.Si."
+date: today
+date-format: ddd, D MMM YYYY
+institute: PhD Candidate in Public Health, <br/>Infectious & Tropical Diseases Epidemiology Lab, Monash University Indonesia
+format:
+  revealjs:
+    theme: [default, www/css/style.scss]
+    transition: fade
+    slide-number: c/t
+    chalkboard: false
+    code-overflow: wrap
+    code-line-numbers: true
+    highlight-style: a11y
+    preview-links: auto
+    logo: "LogoIPBUni.png"
+    #footer: "[alfanugraha.github.io/dashboard-101/principles-and-best-practices](https://alfanugraha.github.io/dashboard-101/principles-and-best-practices)"
+    embed-resources: false
+execute:
+  echo: true
+  eval: false
+--- 
+ 
+## Agenda {background-color="#f1f5f9"}
+ 
+1. 🎯 Tentang Dashboard
+2. 📐 Design Thinking & Key Principles
+3. 🎨 Best Practices
+4. 🛠️ Lingkungan Pengembangan Dashboard 
+5. 🌐 Hands On: SEAWeather 
+
+# Dashboard mana yang membantu kamu *mengambil keputusan* dengan lebih cepat?  {background="#43464B" style="font-size: 0.7em;"}  
+
+##
+
+![](www/img/tableau-agent-climate.png){fig-align="center" width="1000"}
+
+::: footer
+[Tableau Agent Climate Dashboard](https://public.tableau.com/app/profile/harim.jung/viz/GlobalCODashboardPoweredbyTableauAgent/TableauAgentClimateDashboard)
+:::
+
+## 
+
+![](www/img/tableau-superstore.png){fig-align="center" width="1000"}
+
+::: footer
+[Tableau Superstore Sales Dashboard](https://public.tableau.com/app/profile/ananya.dikshit/viz/SuperstoreSalesandOrdersDashboard-TheBarChartWay/Dashboard2)
+:::
+
+## Dashboard ini membantu pengguna dengan cara:{.scrollable}
+ 
+::: {.columns}
+::: {.column .fragment width="50%"}
+
+```{=html}
+<div style="background: #fff; border: 2px solid #dc2626; 
+     border-radius: 8px; padding: 5px; text-align: center; 
+     min-height: 331px; display: flex; align-items: center; 
+     justify-content: center; color: #64748b;">
+     <img src="www/img/tableau-agent-climate.png" style="margin-bottom: 10px;"/>
+</div>
+```
+
+::: incremental  
+::: {style="font-size: 0.7em;"}
+- **Headline utama (misal Korea Utara)**: CO₂ per kapita 11,6 ton, turun dibandingkan tahun 2019; CO₂ per PDB 0,3 ton, juga sedikit turun.
+- **Faktor pemicu**: Grafik "Emisi dari Energi" menunjukkan batu bara dengan porsi terbesar
+- **Tindakan**: Mengalihkan sumber energi ke yang lebih bersih, seperti tenaga surya atau angin
+:::
+:::
+:::
+
+::: {.column .fragment width="50%"}
+
+```{=html}
+<div style="background: #fff; border: 2px solid #16a34a; 
+     border-radius: 8px; padding: 5px; text-align: center; 
+     min-height: 200px; display: flex; align-items: center; 
+     justify-content: center; color: #64748b;">
+     <img src="www/img/tableau-superstore.png""/>
+</div>
+```
+::: incremental  
+::: {style="font-size: 0.7em;"}
+- **Metrik utama**: Penjualan $746 ribu dan Laba $96 ribu, keduanya naik dibandingkan tahun sebelumnya
+- **Detail mendalam**: Grafik "Sub-Category" menunjukkan Kursi dan Ponsel mengalami pertumbuhan terbesar
+- **Tindakan**: Re-order produk terlaris, obral/promosi rak buku yang penjualannya menurun
+:::
+:::
+:::
+:::
+
+---
+
+## Mengapa Dashboard Penting? {.center}
+
+::: {style="font-size: 0.8em; text-align: center;" .fragment}
+> "Dashboard berada di antara __pertanyaan__ dan __keputusan__.
+> Ketika fiturnya berjalan dengan baik, tim kemudian bertanya 'Pola/tren apa yang tampak?', setelah itu dalam hitungan detik dapat melakukan analisis atau mengambil keputusan.
+> Saat tidak berfungsi, tim jadi memiliki kecenderungan mencari dan menebak-nebak"
+:::
+
+. . .
+
+::: {style="font-size: 1em;text-align: center; margin-top: 30px;"}
+**Data → Keputusan: tanpa dashboard, berapa lama?**
+:::
+
+. . .
+
+::: {style="font-size: 0.8em; text-align: center; margin-top: 30px;"}
+`collect` → `clean` → `model` → `transform` → **`encode (visualise)`**
+:::
+
+. . .
+
+::: {style="font-size: 0.9em;" }
+*Pipeline ini adalah inti dari setiap data product — dashboard berada di akhir ("encode").*
+::: 
+
+::: footer
+[Josep Ferrer, Freelance Data Scientist, 2025](https://www.datacamp.com/tutorial/dashboard-design-tutorial)
+:::
+
+
+# Apa itu Dashboard?  {background="#43464B" style="font-size: 0.8em;"}  
+
+## Dashboard = Alat Komunikasi, Bukan Sekadar Tampilan Data {style="font-size: 0.8em;"}
+
+::: {.columns}
+::: {.column .fragment width="55%"}
+```{=html}
+<br>
+<div style="background:#eff6ff; border-radius:10px; padding:18px; border-left:4px solid #2563eb;">
+  <div style="font-size:1em; font-weight:500; color:#1e293b; margin-bottom:14px;">
+    Definisi Operasional
+    <span style="font-size:0.5em; font-weight:200; color:#64748b; display:block; margin-top:2px;">
+      Diadaptasi dari Few (2013) &amp; Knaflic (2015)
+    </span>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:8px; font-size:0.8em;">
+    <div style="background:#fff; border-radius:8px; padding:10px 12px; border:1px solid #bfdbfe;">
+      <span style="color:#2563eb; font-weight:600;">Visualisasi data</span>
+      <span style="color:#475569;"> yang dirancang untuk mendukung keputusan</span>
+    </div>
+    <div style="background:#fff; border-radius:8px; padding:10px 12px; border:1px solid #bfdbfe;">
+      <span style="color:#dc2626; font-weight:600;">Bukan</span>
+      <span style="color:#475569;"> menampilkan semua data — hanya </span>
+      <span style="color:#2563eb; font-weight:600;">yang penting & relevan</span>
+    </div>
+    <div style="background:#fff; border-radius:8px; padding:10px 12px; border:1px solid #bfdbfe;">
+      <span style="color:#475569;">Menyampaikan </span>
+      <span style="color:#2563eb; font-weight:600;">pesan yang jelas</span>
+      <span style="color:#475569;"> kepada audiens yang tepat</span>
+    </div>
+  </div>
+</div>
+```
+:::
+
+::: {.column .fragment width="45%"}
+```{=html}
+<br>
+```
+**Tiga fungsi utama:**
+
+::: {.incremental style="font-size: 0.8em;"}
+- 📢**Menyampaikan pesan**: satu perspektif yang sama
+- ❓**Menjawab pertanyaan penting**: yang sering ditanya, terjawab otomatis
+- ⚡**Mendukung pengambilan keputusan**: dari "Fitur apa yang berubah?" langsung ke *action*
+:::
+:::
+:::
+
+. . .
+
+::: {.callout-tip title="Contoh Dashboard Penggunaan Mobil Harian" style="font-size: 0.8em;"}
+Apakah kamu perlu tahu berapa liter bensin yang sudah habis terpakai?<br/>
+Hanya perlu tahu: **cukup sampai tujuan atau tidak?**  
+Bukan semua angka, tapi **angka yang tepat, saat yang tepat.**
+
+*"There is a story in your data. But your tools don't know what that story is."*<br/>Cole Nussbaumer Knaflic, **Storytelling with Data** (2015)
+:::
+
+
+---
+
+## Dashboard vs Report vs Apps {.center}
+
+:::{ .fragment}
+```{=html}
+<div style="overflow-x:auto;">
+<table style="width:100%; border-collapse:collapse; font-size:0.82em; border-radius:10px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+  <thead>
+    <tr style="background:#2563eb; color:white;">
+      <th style="padding:12px 16px; text-align:left;">Dimensi</th>
+      <th style="padding:12px 16px; text-align:center;">📊 Dashboard</th>
+      <th style="padding:12px 16px; text-align:center;">📄 Report</th>
+      <th style="padding:12px 16px; text-align:center;">📱 Apps</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#fff;">
+      <td style="padding:10px 16px; font-weight:600; color:#475569;">Update</td>
+      <td style="padding:10px 16px; text-align:center; color:#16a34a; font-weight:500;">Real-time / Otomatis</td>
+      <td style="padding:10px 16px; text-align:center; color:#64748b;">Periodik / Manual</td>
+      <td style="padding:10px 16px; text-align:center; color:#16a34a; font-weight:500;">Real-time</td>
+    </tr>
+    <tr style="background:#f8fafc;">
+      <td style="padding:10px 16px; font-weight:600; color:#475569;">Interaktivitas</td>
+      <td style="padding:10px 16px; text-align:center; color:#2563eb;">Medium</td>
+      <td style="padding:10px 16px; text-align:center; color:#dc2626;">Rendah</td>
+      <td style="padding:10px 16px; text-align:center; color:#16a34a; font-weight:500;">Tinggi</td>
+    </tr>
+    <tr style="background:#fff;">
+      <td style="padding:10px 16px; font-weight:600; color:#475569;">Tujuan</td>
+      <td style="padding:10px 16px; text-align:center; color:#2563eb;">Monitor & Keputusan</td>
+      <td style="padding:10px 16px; text-align:center; color:#64748b;">Dokumentasi</td>
+      <td style="padding:10px 16px; text-align:center; color:#7c3aed;">Transaksi / Aksi</td>
+    </tr>
+    <tr style="background:#f8fafc;">
+      <td style="padding:10px 16px; font-weight:600; color:#475569;">Contoh</td>
+      <td style="padding:10px 16px; text-align:center; color:#64748b;">Google Analytics</td>
+      <td style="padding:10px 16px; text-align:center; color:#64748b;">Laporan Tahunan</td>
+      <td style="padding:10px 16px; text-align:center; color:#64748b;">Tokopedia</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+```
+:::
+
+---
+
+
+## Mengapa Harus Dashboard?
+
+:::{.fragment style="font-size: 0.65em;"}
+> *"A visual display of the most important information needed to achieve one or more objectives; consolidated and arranged on a single screen so the information can be monitored at a glance."*<br/><br/>
+> Stephen Few, **Information Dashboard Design** (2013, 2nd ed.)
+:::
+
+:::{.fragment style="font-size: 0.8em;"}
+```{=html}
+<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:8px;">
+  <div style="background:#eff6ff; border-radius:10px; padding:12px; border-top:3px solid #2563eb;">
+    <div style="font-size:1.5em; margin-bottom:8px;">⏱️</div>
+    <div style="font-weight:700; color:#1e293b; margin-bottom:6px;">Pemantauan Real-Time</div>
+    <div style="color:#475569; font-size:0.88em; line-height:1.5;">Memonitor kondisi terkini tanpa menunggu laporan. Anomali terdeteksi dalam detik, bukan hari.</div>
+  </div>
+  <div style="background:#f0fdf4; border-radius:10px; padding:12px; border-top:3px solid #16a34a;">
+    <div style="font-size:1.5em; margin-bottom:8px;">⚡</div>
+    <div style="font-weight:700; color:#1e293b; margin-bottom:6px;">Percepat Keputusan</div>
+    <div style="color:#475569; font-size:0.88em; line-height:1.5;">Dari <em>cari data</em> dulu, lalu <em>ambil keputusan saat ini</em>. Konteks langsung tersedia di satu tampilan layar.</div>
+  </div>
+  <div style="background:#f5f3ff; border-radius:10px; padding:12px; border-top:3px solid #7c3aed;">
+    <div style="font-size:1.5em; margin-bottom:8px;">🔍</div>
+    <div style="font-weight:700; color:#1e293b; margin-bottom:6px;">Interaktif & Eksploratif</div>
+    <div style="color:#475569; font-size:0.88em; line-height:1.5;">User bisa filter, drill-down, zoom, mengajukan pertanyaan mandiri tanpa bergantung pada analis.</div>
+  </div>
+  <div style="background:#fff7ed; border-radius:10px; padding:12px; border-top:3px solid #ea580c;">
+    <div style="font-size:1.5em; margin-bottom:8px;">🤝</div>
+    <div style="font-weight:700; color:#1e293b; margin-bottom:6px;">Self-Service Analytics</div>
+    <div style="color:#475569; font-size:0.88em; line-height:1.5;">Tim non-teknis bisa menjawab pertanyaan data sendiri. Analis fokus pada insight, bukan request.</div>
+  </div>
+</div>
+```
+:::
+
+
+## Tiga Jenis Dashboard
+
+:::{.fragment}
+```{=html}
+<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:8px;">
+
+  <div style="background:#fff; border-radius:12px; padding:18px; 
+       box-shadow:0 2px 12px rgba(37,99,235,0.10); border-top:4px solid #1e40af;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+      <span style="font-size:1.5em;">🎯</span>
+      <div>
+        <div style="font-weight:700; color:#1e293b;">Executive</div>
+        <div style="font-size:0.75em; color:#7c3aed; font-weight:600; text-transform:uppercase; letter-spacing:0.05em;">Strategic</div>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:6px; font-size:0.7em; color:#475569;">
+      <div><span style="color:#1e40af; font-weight:600;">Fokus:</span> Arah & tujuan jangka panjang</div>
+      <div><span style="color:#1e40af; font-weight:600;">Data:</span> Ringkasan high-level (KPI)</div>
+      <div><span style="color:#1e40af; font-weight:600;">Update:</span> Mingguan / Bulanan</div>
+      <div><span style="color:#1e40af; font-weight:600;">User:</span> C-Level, Direktur</div>
+    </div>
+    <div style="margin-top:12px; background:#eff6ff; border-radius:6px; padding:8px 10px; font-size:0.78em; color:#1e40af;">
+      💡 Revenue, ROI, Market Share, NPS
+    </div>
+  </div>
+
+  <div style="background:#fff; border-radius:12px; padding:18px; 
+       box-shadow:0 2px 12px rgba(22,163,74,0.10); border-top:4px solid #16a34a;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+      <span style="font-size:1.5em;">⚡</span>
+      <div>
+        <div style="font-weight:700; color:#1e293b;">Operational</div>
+        <div style="font-size:0.75em; color:#16a34a; font-weight:600; text-transform:uppercase; letter-spacing:0.05em;">Real-Time</div>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:6px; font-size:0.7em; color:#475569;">
+      <div><span style="color:#16a34a; font-weight:600;">Fokus:</span> Monitoring harian, anomali</div>
+      <div><span style="color:#16a34a; font-weight:600;">Data:</span> Real-time, live feed</div>
+      <div><span style="color:#16a34a; font-weight:600;">Update:</span> Detik / Menit</div>
+      <div><span style="color:#16a34a; font-weight:600;">User:</span> Manajer Operasional</div>
+    </div>
+    <div style="margin-top:12px; background:#f0fdf4; border-radius:6px; padding:8px 10px; font-size:0.78em; color:#16a34a;">
+      💡 Inventory, Response Time, <strong>SEAWeather ← demo!</strong>
+    </div>
+  </div>
+
+  <div style="background:#fff; border-radius:12px; padding:22px; 
+       box-shadow:0 2px 12px rgba(124,58,237,0.10); border-top:4px solid #7c3aed;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+      <span style="font-size:1.5em;">🔍</span>
+      <div>
+        <div style="font-weight:700; color:#1e293b;">Analytical</div>
+        <div style="font-size:0.75em; color:#7c3aed; font-weight:600; text-transform:uppercase; letter-spacing:0.05em;">Deep Dive</div>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:6px; font-size:0.7em; color:#475569;">
+      <div><span style="color:#7c3aed; font-weight:600;">Fokus:</span> Analisis mendalam, tren</div>
+      <div><span style="color:#7c3aed; font-weight:600;">Data:</span> Historis, detail, eksploratif</div>
+      <div><span style="color:#7c3aed; font-weight:600;">Update:</span> Harian / Mingguan</div>
+      <div><span style="color:#7c3aed; font-weight:600;">User:</span> Data Analyst, Peneliti</div>
+    </div>
+    <div style="margin-top:12px; background:#f5f3ff; border-radius:6px; padding:8px 10px; font-size:0.78em; color:#7c3aed;">
+      💡 Segmentasi, Tren Penyakit, Cohort
+    </div>
+  </div>
+</div>
+```
+:::
+
+::: {.callout-important style="margin-top:16px;" .fragment}
+**Tidak ada dashboard yang universal.** Tipe yang salah = data aktual benar tetapi dashboard tidak sesuai.  
+Selalu dimulai dari: *Siapa usernya? Pertanyaan apa yang ingin dijawab? Seberapa sering diperbarui?*
+
+Klasifikasi diadaptasi dari tipologi Few (2013) dan digunakan luas di industri Business Intelligence (BI).
+:::
+
+
+## Strategic Dashboard
+
+![](www/img/dashboard-stratetic.png){fig-align="center" width="1000"}
+
+::: footer
+[Monthly Executive Summary](https://public.tableau.com/app/profile/scatterpie.analytics/viz/MonthlyExecutiveDashboard_16083589293530/ExecutiveSummary)
+:::
+
+## Operational Dashboard
+
+![](www/img/dashboard-operational.png){fig-align="center" width="1000"}
+
+::: footer
+[Call Center Dashboard](https://public.tableau.com/app/profile/tobiloba.babajide/viz/CallCenterDashboard_17110607427650/CallCenterDashboard)
+:::
+
+## Analytical Dashboard
+
+![](www/img/dashboard-analytical.png){fig-align="center" width="1000"}
+
+::: footer
+[Merchandise Sales Dashboard](https://public.tableau.com/app/profile/gandes.goldestan/viz/MerchandiseSalesDashboard_17490129386740/Overview)
+:::
+
+
+# Design Thinking & Key Principles  {background="#43464B" style="font-size: 0.8em;"}  
+
+---
+
+## Prinsip Utama: Mulai dari User, Bukan dari Data {.scrollable}
+
+::: {.columns}
+::: {.column width="50%" .fragment}
+```{=html}
+<br>
+<div style="background:#fff7ed; border-radius:10px; padding:16px; border-left:4px solid #ea580c; margin-bottom:16px;">
+  <div style="font-weight:500; color:#ea580c; margin-bottom:6px;">❌ Data-Centric Approach</div>
+  <div style="color:#475569; font-size:0.6em; line-height:1.6;">
+    "Kita punya banyak data, tampilkan semua."<br>
+    → Dashboard penuh, tidak ada yang bisa dibaca.<br>
+    → User bingung, sulit mengambil keputusan.
+  </div>
+</div>
+<div style="background:#f0fdf4; border-radius:10px; padding:16px; border-left:4px solid #16a34a;">
+  <div style="font-weight:500; color:#16a34a; margin-bottom:6px;">✅ User-Centric Approach</div>
+  <div style="color:#475569; font-size:0.6em; line-height:1.6;">
+    "User perlu memutuskan keputusan A, data apa yang dapat mendukung itu?"<br>
+    → Dashboard fokus hanya yang relevan.<br>
+    → User paham, keputusan cepat diambil.
+  </div>
+</div>
+```
+:::
+
+::: {.column width="50%" .fragment style="font-size:0.7em;"}
+```{=html}
+<br>
+```
+> *Dashboard yang baik bukan yang menampilkan seluruh data yang ada, tapi yang menjawab pertanyaan yang paling sering muncul dengan cara yang paling cepat dipahami.*
+
+:::{.fragment}
+**Implikasinya:**
+
+- Sebelum coding, **wawancara pengguna terlebih dahulu**
+- Sebelum memilih chart, **definisikan pertanyaannya**
+- Sebelum styling, **pastikan fungsinya sudah benar atau belum**
+:::
+
+:::
+:::
+
+---
+
+## Design Thinking: 5 Tahap Membangun Dashboard
+
+```{=html}
+<br>
+<div style="display:flex; gap:0; margin:12px 0; font-family:sans-serif;">
+
+  <div style="flex:1; background:#eff6ff; padding:18px 14px; border-radius:10px 0 0 10px; border-top:4px solid #2563eb; position:relative;">
+    <div style="font-size:1.2em; margin-bottom:6px;">🤝</div>
+    <div style="font-weight:700; color:#1e40af; font-size:0.9em;">1. Empathize</div>
+    <div style="color:#475569; font-size:0.6em; margin-top:6px; line-height:1.5;">
+      Pahami kebutuhan user.<br>
+      Interview & observasi.<br>
+      <em>"Apa keputusan yang sering Anda buat?"</em>
+    </div>
+  </div>
+
+  <div style="flex:1; background:#f0fdf4; padding:18px 14px; border-top:4px solid #16a34a; position:relative;">
+    <div style="font-size:1.2em; margin-bottom:6px;">🎯</div>
+    <div style="font-weight:700; color:#15803d; font-size:0.9em;">2. Define</div>
+    <div style="color:#475569; font-size:0.6em; margin-top:6px; line-height:1.5;">
+      Rumuskan masalah utama.<br>
+      Fokus pada <strong>keputusan</strong> yang ingin diambil.<br>
+      <em>"Satu pertanyaan paling penting."</em>
+    </div>
+  </div>
+
+  <div style="flex:1; background:#fff7ed; padding:18px 14px; border-top:4px solid #ea580c; position:relative;">
+    <div style="font-size:1.2em; margin-bottom:6px;">💡</div>
+    <div style="font-weight:700; color:#c2410c; font-size:0.9em;">3. Ideate</div>
+    <div style="color:#475569; font-size:0.6em; margin-top:6px; line-height:1.5;">
+      Brainstorm desain & KPI.<br>
+      Bebas tanpa batasan dulu.<br>
+      <em>Sketsa di kertas, jangan langsung koding.</em>
+    </div>
+  </div>
+
+  <div style="flex:1; background:#f5f3ff; padding:18px 14px; border-top:4px solid #7c3aed; position:relative;">
+    <div style="font-size:1.2em; margin-bottom:6px;">🔧</div>
+    <div style="font-weight:700; color:#6d28d9; font-size:0.9em;">4. Prototype</div>
+    <div style="color:#475569; font-size:0.6em; margin-top:6px; line-height:1.5;">
+      Buat draf dashboard.<br>
+      Fokus <strong>fungsi</strong>, bukan tampilan sempurna.<br>
+      <em>Done is better than perfect.</em>
+    </div>
+  </div>
+
+  <div style="flex:1; background:#fdf2f8; padding:18px 14px; border-radius:0 10px 10px 0; border-top:4px solid #db2777; position:relative;">
+    <div style="font-size:1.2em; margin-bottom:6px;">🧪</div>
+    <div style="font-weight:700; color:#be185d; font-size:0.9em;">5. Test</div>
+    <div style="color:#475569; font-size:0.6em; margin-top:6px; line-height:1.5;">
+      Uji ke user kunci.<br>
+      Iterasi berdasarkan feedback.<br>
+      <em>Dashboard terbaik = yang paling sering direvisi.</em>
+    </div>
+  </div>
+
+</div>
+```
+
+::: {.callout-note}
+Design Thinking bukan proses linear, **Empathize dan Test bisa terjadi berulang kali** sebelum dashboard dinyatakan sesuai kebutuhan.
+:::
+
+---
+
+
+## Dashboard yang Efektif: Berawal dari Insight ke Action {.scrollable style="font-size:0.8em;"}
+
+::: {.columns}
+::: {.column width="45%" .fragment}
+```{=html}
+<div style="background:#1e293b; border-radius:12px; padding:24px; color:white;">
+  <div style="font-size:0.9em; font-weight:600; color:#bfdbfe; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:16px;">
+    DIKW Hierarchy (Ackoff, 1989)
+  </div>
+  <div style="display:flex; flex-direction:column; gap:0;">
+    <div style="background:#2563eb; border-radius:8px 8px 0 0; padding:12px 16px; text-align:center;">
+      <div style="font-weight:700;">DATA</div>
+      <div style="font-size:0.78em; opacity:0.85;">Angka mentah dari sistem</div>
+    </div>
+    <div style="text-align:center; padding:4px; color:#94a3b8; font-size:1.2em;">↓</div>
+    <div style="background:#3b82f6; padding:12px 16px; text-align:center;">
+      <div style="font-weight:700;">INFORMASI</div>
+      <div style="font-size:0.78em; opacity:0.85;">Data yang sudah diberi konteks</div>
+    </div>
+    <div style="text-align:center; padding:4px; color:#94a3b8; font-size:1.2em;">↓</div>
+    <div style="background:#0d9488; padding:12px 16px; text-align:center;">
+      <div style="font-weight:700;">INSIGHT</div>
+      <div style="font-size:0.78em; opacity:0.85;">Pola & anomali yang bermakna</div>
+    </div>
+    <div style="text-align:center; padding:4px; color:#94a3b8; font-size:1.2em;">↓</div>
+    <div style="background:#16a34a; border-radius:0 0 8px 8px; padding:12px 16px; text-align:center;">
+      <div style="font-weight:700;">ACTION ← tujuan akhir</div>
+      <div style="font-size:0.78em; opacity:0.85;">Keputusan yang diambil</div>
+    </div>
+  </div>
+  <div style="margin-top:14px; font-size:0.8em; color:#94a3b8; text-align:center; font-style:italic;">
+    Dashboard belum dapat bekerja secara efektif jika masih berhenti di "Informasi".
+  </div>
+</div>
+```
+:::
+
+::: {.column width="55%" .fragment}
+```{=html}
+<br>
+<div style="display:flex; flex-direction:column; gap:16px;">
+
+  <div style="background:#fff; border-radius:10px; padding:0; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.07);">
+    <div style="background:#2563eb; color:white; padding:10px 16px; font-weight:600; font-size:0.5em; display:flex; align-items:center; gap:8px;">
+      <span>📊</span> Contoh 1: Penjualan E-Commerce
+    </div>
+    <div style="padding:14px 16px; display:grid; grid-template-columns:1fr 1fr; gap:9px;">
+      <div style="background:#eff6ff; border-radius:8px; padding:10px;">
+        <div style="font-size:0.7em; color:#64748b; margin-bottom:4px; font-weight:600; text-transform:uppercase;">INSIGHT</div>
+        <div style="font-size:0.65em; color:#1e293b;">Penjualan selalu naik signifikan di akhir bulan (tanggal 25-31)</div>
+      </div>
+      <div style="background:#f0fdf4; border-radius:8px; padding:12px;">
+        <div style="font-size:0.7em; color:#64748b; margin-bottom:4px; font-weight:600; text-transform:uppercase;">ACTION</div>
+        <div style="font-size:0.65em; color:#1e293b;">Atur stok lebih awal & jalankan promo tanggal 20 untuk "panas-in" traffic</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#fff; border-radius:10px; padding:0; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.07);">
+    <div style="background:#7c3aed; color:white; padding:10px 16px; font-weight:600; font-size:0.5em; display:flex; align-items:center; gap:8px;">
+      <span>🚌</span> Contoh 2: Transportasi Umum
+    </div>
+    <div style="padding:14px 16px; display:grid; grid-template-columns:1fr 1fr; gap:9px;">
+      <div style="background:#f5f3ff; border-radius:8px; padding:10px;">
+        <div style="font-size:0.7em; color:#64748b; margin-bottom:4px; font-weight:600; text-transform:uppercase;">INSIGHT</div>
+        <div style="font-size:0.65em; color:#1e293b;">Traffic penumpang sangat rendah pukul 06:00–08:00 di rute tertentu</div>
+      </div>
+      <div style="background:#f0fdf4; border-radius:8px; padding:12px;">
+        <div style="font-size:0.7em; color:#64748b; margin-bottom:4px; font-weight:600; text-transform:uppercase;">ACTION</div>
+        <div style="font-size:0.65em; color:#1e293b;">Kurangi frekuensi pagi, alihkan armada ke rute dengan load tinggi</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#fff; border-radius:10px; padding:0; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.07);">
+    <div style="background:#ea580c; color:white; padding:10px 16px; font-weight:600; font-size:0.5em; display:flex; align-items:center; gap:8px;">
+      <span>🏥</span> Contoh 3: Layanan Kesehatan
+    </div>
+    <div style="padding:14px 16px; display:grid; grid-template-columns:1fr 1fr; gap:9px;">
+      <div style="background:#fff7ed; border-radius:8px; padding:10px;">
+        <div style="font-size:0.7em; color:#64748b; margin-bottom:4px; font-weight:600; text-transform:uppercase;">INSIGHT</div>
+        <div style="font-size:0.65em; color:#1e293b;">Kasus DBD melonjak setiap Maret–April di kecamatan X bersamaan dengan musim hujan</div>
+      </div>
+      <div style="background:#f0fdf4; border-radius:8px; padding:12px;">
+        <div style="font-size:0.7em; color:#64748b; margin-bottom:4px; font-weight:600; text-transform:uppercase;">ACTION</div>
+        <div style="font-size:0.65em; color:#1e293b;">Aktifkan PSN & distribusi abate sejak Februari, bukan menunggu kasus naik</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+```
+:::
+:::
+
+---
+
+## Prinsip Kunci: Checklist Dashboard yang Actionable
+
+```{=html}
+<br>
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px;">
+
+  <div style="background:#fff; border-radius:10px; padding:16px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+    <div style="font-weight:700; color:#1e293b; margin-bottom:14px; font-size:0.8em; display:flex; align-items:center; gap:8px;">
+      <span style="background:#eff6ff; padding:4px 8px; border-radius:6px; color:#2563eb;">✅ Relevan</span>
+    </div>
+    <div style="color:#475569; font-size:0.6em; line-height:1.6;">
+      Setiap elemen harus menjawab pertanyaan yang benar-benar ditanya user.<br><br>
+      <strong>Test:</strong> <em>"Kalau elemen ini dihapus, apakah user kehilangan informasi penting?"</em><br>
+      Kalau tidak, hapus!
+    </div>
+  </div>
+
+  <div style="background:#fff; border-radius:10px; padding:16px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+    <div style="font-weight:700; color:#1e293b; margin-bottom:14px; font-size:0.8em; display:flex; align-items:center; gap:8px;">
+      <span style="background:#f0fdf4; padding:4px 8px; border-radius:6px; color:#16a34a;">✅ Mudah Dipahami</span>
+    </div>
+    <div style="color:#475569; font-size:0.6em; line-height:1.6;">
+      User harus mengerti dalam 5 detik tanpa penjelasan.<br><br>
+      <strong>Test:</strong> <em>Tunjukkan ke seseorang yang belum pernah melihat dashboard tersebut. Bagaimana respon mereka pertama kali?</em>
+    </div>
+  </div>
+
+  <div style="background:#fff; border-radius:10px; padding:16px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+    <div style="font-weight:700; color:#1e293b; margin-bottom:14px; font-size:0.8em; display:flex; align-items:center; gap:8px;">
+      <span style="background:#fff7ed; padding:4px 8px; border-radius:6px; color:#ea580c;">✅ Actionable</span>
+    </div>
+    <div style="color:#475569; font-size:0.6em; line-height:1.6;">
+      Setiap angka penting harus mengarah ke sebuah keputusan.<br><br>
+      <strong>Test:</strong> <em>"Kalau angka ini naik/turun, apa yang akan dilakukan user?"</em><br>
+      Kalau tidak tahu artinya pertanyaannya belum terdefinisi.
+    </div>
+  </div>
+
+  <div style="background:#1e293b; border-radius:10px; padding:16px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+    <div style="font-weight:700; color:#bfdbfe; margin-bottom:10px; font-size:0.8em;">
+      🔑 Satu Kalimat Penting
+    </div>
+    <div style="color:#e2e8f0; font-size:0.65em; line-height:1.7; font-style:italic;">
+      "Dashboard efektif akan menjawab <strong style="color:#60a5fa;">satu pertanyaan kunci</strong> dengan sangat jelas, bukan menjawab <strong style="color:#f87171;">semua pertanyaan</strong> dengan proses yang membingungkan."
+    </div>
+  </div>
+
+</div>
+```
+
+::: footer
+Tufte (1983), Few (2013) , Knaflic (2015)
+:::
+
+
+# Best Practices dalam membangun Dashboard yang Efektif {background="#43464B" style="font-size: 0.8em;"}  
+
+## Dashboard Efektif dapat Bercerita
+
+::: {.columns}
+::: {.column width="60%" .fragment}
+```{=html}
+<br>
+<div style="background: #fff; border: 2px solid #dc2626; 
+     border-radius: 8px; padding: 5px; text-align: center; 
+     min-height: 300px; display: flex; align-items: center; 
+     justify-content: center; color: #64748b;">
+     <img src="www/img/tableau-agent-climate.png" style="margin-bottom: 10px;"/>
+</div>
+```
+:::
+
+::: {.column width="40%" .fragment}
+```{=html}
+<br>
+```
+:::{style="font-size:0.8em;"}
+**Arc cerita dashboard:**
+
+1. **Setup (KPI):** CO₂ per capita 5.2t, turun vs 2019
+2. **Konflik (Driver):** Oil = kontributor terbesar
+3. **Resolusi (Aksi):** Shift ke renewable, target per kuartal
+:::
+
+:::
+:::
+
+. . .
+
+:::{style="font-size:0.7em;"}
+> *"Perubahan apa yang terjadi? → Kenapa? → Apa yang harus kita lakukan sekarang?"*
+
+**Pendekatan naratif** sebaiknya digunakan dalam setiap pengembangan dashboard.
+:::
+
+---
+
+## Hirarki Visual: Pola Z {.center}
+
+```{=html}
+<br>
+<div style="background: #1f2937; border-radius: 12px; 
+     padding: 30px; font-family: monospace;">
+  <div style="display: grid; grid-template-columns: 1fr 1fr; 
+       gap: 20px; color: white;">
+    <div style="background: #00d4ff22; border: 2px solid #00d4ff; 
+         border-radius: 8px; padding: 20px; text-align: center;">
+      ① Top-Left<br><small style="color:#00d4ff;">START — KPI Utama</small>
+    </div>
+    <div style="background: #00d4ff11; border: 1px solid #00d4ff66; 
+         border-radius: 8px; padding: 20px; text-align: center;">
+      ② Top-Right<br><small style="color:#9ca3af;">KPI Sekunder</small>
+    </div>
+    <div style="background: #00d4ff11; border: 1px solid #00d4ff44; 
+         border-radius: 8px; padding: 20px; text-align: center;">
+      ③ Mid-Left<br><small style="color:#9ca3af;">Tren / Chart</small>
+    </div>
+    <div style="background: #ffffff11; border: 1px dashed #ffffff33; 
+         border-radius: 8px; padding: 20px; text-align: center;">
+      ④ Bottom-Right<br><small style="color:#6b7280;">Detail / Tabel</small>
+    </div>
+  </div>
+  <div style="text-align:center; margin-top: 15px; 
+       color: #f59e0b; font-size: 0.9em;">
+    ↗ Letakkan informasi terpenting dengan pola jalur Z, dimulai dari pojok kiri atas
+  </div>
+</div>
+```
+
+---
+
+## Prinsip Warna: Sinyal, Bukan Dekorasi
+
+::: {.columns}
+::: {.column width="50%" .fragment}
+**✅ Gunakan warna khusus untuk:**
+
+- **Brand neutral** → background, border, label
+- **Satu fitur highlight** → "perhatikan ini!" (konsisten)
+- **Alert/risk** → merah/oranye, dan hanya itu
+:::
+
+::: {.column width="50%" .fragment}
+**❌ Hindari:**
+
+- 8+ warna berbeda karena "supaya menarik"
+- Rainbow chart (pie chart 12 slice)
+- Warna tanpa makna yang konsisten
+:::
+:::
+
+. . .
+
+::: {.callout-warning title="Aksesibilitas" .fragment}
+8% pria mengalami color blindness.  
+Selalu tambahkan **ikon atau label** sebagai pembeda kedua. Gunakan [ColorBrewer](https://colorbrewer2.org) untuk palette yang aman.
+:::
+
+---
+
+## Pilih Chart yang Tepat {.center}
+
+| Pertanyaan | ✅ Chart Tepat | ❌ Sering Salah |
+|:-----------|:-------------:|:--------------:|
+| Perbandingan antar kategori | Bar chart | Pie chart |
+| Tren sepanjang waktu | Line chart | Bar bertumpuk |
+| Proporsi keseluruhan | Stacked bar / Treemap | Pie > 5 slice |
+| Distribusi data | Histogram / Box plot | Bar biasa |
+| Hubungan dua variabel | Scatter plot | Line chart |
+| Data geografis | Choropleth / Dot map | Tabel nama wilayah |
+| Satu angka penting | KPI card / Gauge | Chart apapun |
+
+. . .
+
+::: {.callout-note}
+**Tentang Pie Chart:** Umumnya manusia sulit membandingkan luas area.  
+Lebih dari 3–4 slice → **gunakan bar chart. Selalu.**
+:::
+
+---
+
+## Hall of Shame: 5 Kesalahan Paling Umum
+
+::: {.incremental}
+1. **"Dashboard sebagai laporan"** — terlalu banyak angka, tidak ada hierarki, semua terasa sama pentingnya
+2. **"Chartjunk"** — gradien, shadow 3D, clipart, background gambar mengalahkan data
+3. **"Rainbow syndrome"** — banyak warna tanpa makna konsisten
+4. **"Missing context"** — angka "1.247" tanpa satuan, tanpa pembanding, tanpa tren
+5. **"Precision theater"** — 6 angka desimal padahal keputusan hanya butuh bilangan bulat
+:::
+
+
+# Lingkungan Pengembangan Dashboard {background="#43464B" style="font-size: 0.8em;"}
+
+## IDE (Lingkungan Pengembangan Terintegrasi): BI Tools vs Code-First {style="font-size:1.1em;"}
+
+::: {.columns}
+::: {.column width="50%" .fragment}
+
+```{=html}
+<br>
+```
+::: {style="font-size:0.7em; gap: 7px;"}
+### 🖱️ BI Tools (No-Code/Low-Code)
+- **Tableau**: visualisasi komprehensif, mahal
+- **Power BI**: ekosistem Microsoft, enterprise
+- **Metabase**: open source, self-host
+- **Google Looker Studio**: ekosistem Google, gratis 
+
+**Cocok untuk:** analis bisnis, tim non-teknis, dashboard standar
+:::
+:::
+
+::: {.column width="50%" .fragment}
+```{=html}
+<br>
+```
+::: {style="font-size:0.7em; gap: 7px;"}
+### 💻 Code-First (Python/R)
+- **Streamlit**: paling mudah, Python
+- **Dash (Plotly)**: fleksibel, production-grade
+- **Shiny R/Python** ← dipakai pada hands on!
+- **Observable**: JS, web-native
+- **Quarto** ← yang dipakai untuk membuat slide ini!
+
+**Cocok untuk:** data scientist, custom logic, integrasi ML
+:::
+
+:::
+:::
+
+. . .
+
+::: {.callout-tip title="Memilih IDE" style="font-size:0.8em;"}
+Pilih berdasarkan **audiens, kompleksitas, dan maintainability**.
+:::
+
+
+# Hands On: Membangun Python Shiny Dashboard  {background="#43464B" style="font-size: 0.8em;"}
+
+## "assalamualaikum Kak, perkenalkan saya mhs A dosbing B, boleh info ga cara dapetin data XYZ... terima kasih sebelumnya 🙏🏻" {.center}
+
+::: {style="text-align: center; font-size: 3em; padding: 60px; color: #ffffff;"}
+**2.000+**  
+:::
+
+::: {style="text-align: center; font-size: 1.3em;"}
+API free, open, bisa dipakai hari ini  
+dikurasi oleh komunitas developer global
+:::
+
+. . .
+
+::: {style="text-align: center; margin-top: 20px;"}
+```{=html}
+<a href="https://github.com/public-apis/public-apis" 
+   target="_blank"
+   style="background: #2563eb; color: #ffffff; padding: 12px 30px; 
+          border-radius: 6px; text-decoration: none; font-weight: bold; 
+          font-size: 1.1em;">
+  ⭐ 421k Stars — github.com/public-apis/public-apis
+</a>
+```
+:::
+
+---
+
+## Kategori API {.center}
+
+::: {style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 10px;"}
+```{=html}
+<div style="background:#fff7ed; border-left: 4px solid #ea580c; 
+     padding: 15px; border-radius: 6px;">
+  <strong style="color:#ea580c;">🏥 Health</strong><br>
+  <small>WHO, OpenFDA, Disease.sh<br>Data COVID, vaksinasi, penyakit</small>
+</div>
+<div style="background:#eff6ff; border-left: 4px solid #2563eb; 
+     padding: 15px; border-radius: 6px;">
+  <strong style="color:#2563eb;">☁️ Weather ← DEMO</strong><br>
+  <small>Weatherstack, Open-Meteo<br>Cuaca real-time, forecast</small>
+</div>
+<div style="background:#f0fdf4; border-left: 4px solid #16a34a; 
+     padding: 15px; border-radius: 6px;">
+  <strong style="color:#16a34a;">🌿 Environment</strong><br>
+  <small>AirVisual, NASA EONET<br>AQI, bencana, deforestasi</small>
+</div>
+<div style="background:#fffbeb; border-left: 4px solid #d97706; 
+     padding: 15px; border-radius: 6px;">
+  <strong style="color:#d97706;">💹 Finance</strong><br>
+  <small>Alpha Vantage, CoinGecko<br>Saham, forex, kripto</small>
+</div>
+<div style="background:#f5f3ff; border-left: 4px solid #7c3aed; 
+     padding: 15px; border-radius: 6px;">
+  <strong style="color:#7c3aed;">🏛️ Government</strong><br>
+  <small>BPS API, World Bank<br>Kependudukan, ekonomi</small>
+</div>
+<div style="background:#fdf2f8; border-left: 4px solid #db2777; 
+     padding: 15px; border-radius: 6px;">
+  <strong style="color:#db2777;">🔭 Science</strong><br>
+  <small>NASA, OpenAQ<br>Asteroid, atmosfer, iklim</small>
+</div>
+```
+:::
+
+## Cara Pakai API: Hanya dengan 3 Langkah
+
+```python
+# Langkah 1: Daftar → Dapatkan API key (email + 30 detik)
+API_KEY = "your_key_here"  # simpan di .env, jangan hardcode!
+
+# Langkah 2: Baca dokumentasi → pahami endpoint
+# Contoh Weatherstack: GET http://api.weatherstack.com/current
+
+# Langkah 3: Fetch data
+import requests
+
+response = requests.get(
+    "http://api.weatherstack.com/current",
+    params={"access_key": API_KEY, "query": "Jakarta"}
+)
+
+data = response.json()
+print(data["current"]["temperature"])           # → 32
+print(data["current"]["air_quality"]["pm2_5"])  # → 81.45  🎉
+print(data["current"]["astro"]["sunrise"])      # → 06:01 AM 🎉
+```
+
+. . .
+
+::: {.callout-tip title="Weatherstack Free Plan"}
+Satu API call memberikan: cuaca standar + kualitas udara (6 polutan) + astronomi (sunrise/sunset/fase bulan)
+:::
+
+
+---
+
+## Dari API ke Dashboard
+
+::: {.columns}
+::: {.column width="60%"}
+```python
+# Anda sudah punya ini → data JSON dari API
+# Yang tersisa hanyalah:
+
+from shiny import App, ui, render
+import plotly.express as px
+
+app_ui = ui.page_fluid(
+    ui.h2("🌦️ SEAWeather"),
+    ui.output_ui("weather_card"),
+    ui.output_plot("aqi_chart")
+)
+
+def server(input, output, session):
+    @render.ui
+    def weather_card():
+        # data sudah ada dari API call
+        return ui.card(f"Jakarta: {data['temp']}°C")
+```
+:::
+
+::: {.column width="40%"}
+::: {.callout-note}
+**Pertanyaannya bukan lagi:**  
+*"Dari mana datanya?"*
+
+**Tapi:**  
+*"Cerita apa yang ingin kamu bagikan dengan data ini?"*
+
+Dan sanalah esensi dashboard yang efektif dapat dibangun.
+:::
+:::
+:::
+
+---
+
+## Dashboard API: SEAWeather & Source Code {.center}
+
+::: {style="text-align: center; margin-top: 20px;"}
+```{=html}
+<br>
+<a href="https://alfnp.shinyapps.io/sea-weather/" 
+   target="_blank"
+   style="background: #2563eb; color: #ffffff; padding: 12px 30px; 
+          border-radius: 6px; text-decoration: none; font-weight: bold; 
+          font-size: 1.1em;">alfnp.shinyapps.io/sea-weather
+</a>
+```
+:::
+
+::: {style="text-align: center; margin-top: 20px;"}
+```{=html}
+<br>
+<a href="https://github.com/alfanugraha/dashboard-101" 
+   target="_blank"
+   style="background: #43464B; color: #ffffff; padding: 12px 30px; 
+          border-radius: 6px; text-decoration: none; font-weight: bold; 
+          font-size: 1.1em;">github.com/alfanugraha/dashboard-101
+</a>
+```
+:::
+
+
+# Semoga Bermanfaat, Terima kasih! {background="#43464B" style="font-size: 0.8em;"}

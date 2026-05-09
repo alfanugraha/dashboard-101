@@ -1,0 +1,226 @@
+/*-- scss:defaults --*/
+
+// Typography
+$font-family-sans-serif: 'DM Sans', 'Segoe UI', sans-serif;
+$font-family-monospace: 'JetBrains Mono', 'Fira Code', monospace;
+$presentation-heading-font: 'DM Sans', sans-serif;
+$presentation-heading-color: #ffffff;
+$presentation-heading-font-weight: 700;
+$presentation-font-size-root: 34px;
+$presentation-line-height: 1.5;
+
+// Colors
+$body-bg: #0a0e1a;
+$body-color: #e5e7eb;
+$link-color: #00d4ff;
+$selection-bg: #00d4ff33;
+
+/*-- scss:rules --*/
+
+// Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+// CSS Variables
+:root {
+  --cyan:      #00d4ff;
+  --cyan-dim:  #00d4ff22;
+  --green:     #00ff87;
+  --amber:     #f59e0b;
+  --red:       #ef4444;
+  --card-bg:   #111827;
+  --border:    #1f2937;
+}
+
+// Base
+.reveal {
+  background-color: #0a0e1a;
+  font-family: $font-family-sans-serif;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+// Headings
+.reveal h1 {
+  color: var(--cyan);
+  font-size: 2em;
+  letter-spacing: -0.02em;
+  border-bottom: 2px solid var(--cyan-dim);
+  padding-bottom: 0.3em;
+}
+
+.reveal h2 {
+  color: #ffffff;
+  font-size: 1.4em;
+  letter-spacing: -0.01em;
+}
+
+.reveal h3 {
+  color: var(--cyan);
+  font-size: 1em;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+// Code blocks
+.reveal pre {
+  background: #111827;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--cyan);
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  font-size: 0.65em;
+}
+
+.reveal code {
+  color: #00d4ff;
+  font-family: $font-family-monospace;
+  background: #111827;
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+}
+
+.reveal pre code {
+  background: transparent;
+  padding: 0;
+  color: #e5e7eb;
+}
+
+// Tables
+.reveal table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78em;
+  margin: 0.8em 0;
+}
+
+.reveal table th {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  padding: 9px 14px;
+  border-bottom: 2px solid var(--cyan);
+  text-align: left;
+  font-weight: 600;
+}
+
+.reveal table td {
+  padding: 7px 14px;
+  border-bottom: 1px solid var(--border);
+  color: #d1d5db;
+}
+
+.reveal table tr:hover td {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+// Callouts
+.reveal .callout {
+  border-radius: 8px;
+  border-left-width: 4px;
+  font-size: 0.82em;
+  margin: 0.7em 0;
+  padding: 0.8em 1em;
+}
+
+.reveal .callout-tip {
+  background: rgba(0, 255, 135, 0.07);
+  border-left-color: var(--green);
+}
+
+.reveal .callout-note {
+  background: rgba(0, 212, 255, 0.07);
+  border-left-color: var(--cyan);
+}
+
+.reveal .callout-important {
+  background: rgba(239, 68, 68, 0.07);
+  border-left-color: var(--red);
+}
+
+.reveal .callout-warning {
+  background: rgba(245, 158, 11, 0.07);
+  border-left-color: var(--amber);
+}
+
+// Blockquote
+.reveal blockquote {
+  background: #111827;
+  border-left: 4px solid var(--cyan);
+  border-radius: 0 8px 8px 0;
+  padding: 0.9em 1.4em;
+  color: #9ca3af;
+  font-style: italic;
+  margin: 0.8em 0;
+  box-shadow: none;
+  width: auto;
+}
+
+// Lists
+.reveal ul li,
+.reveal ol li {
+  color: #d1d5db;
+  margin-bottom: 0.45em;
+  line-height: 1.5;
+}
+
+.reveal ul li::marker {
+  color: var(--cyan);
+}
+
+// Inline emphasis
+.reveal strong {
+  color: var(--cyan);
+  font-weight: 600;
+}
+
+.reveal a {
+  color: var(--cyan);
+  text-decoration: none;
+  border-bottom: 1px solid var(--cyan-dim);
+}
+
+.reveal a:hover {
+  border-bottom-color: var(--cyan);
+}
+
+// Progress and controls
+.reveal .progress {
+  background: var(--border);
+  height: 3px;
+}
+
+.reveal .progress span {
+  background: var(--cyan);
+}
+
+.reveal .slide-number {
+  background: transparent;
+  color: #4b5563;
+  font-size: 0.5em;
+}
+
+.reveal .footer {
+  font-size: 0.48em;
+  color: #4b5563;
+  letter-spacing: 0.02em;
+}
+
+// Columns gap
+.reveal .columns {
+  gap: 2rem;
+  align-items: start;
+}
+
+// Section title slides
+.reveal section[data-background-color] h1,
+.reveal section[data-background-color] h2 {
+  color: var(--cyan);
+  border-color: var(--cyan-dim);
+}
+
+// Utility
+.center {
+  text-align: center !important;
+}
